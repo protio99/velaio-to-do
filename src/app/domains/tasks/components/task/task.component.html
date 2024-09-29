@@ -1,19 +1,13 @@
 <div>
-  <h4>Title</h4>
-  <p>Deadline date</p>
+  <h4>{{task.title}}</h4>
+  <p>{{task.deadlineDate}}</p>
   <div>
     <p>Associated people</p>
     <ul>
-      <li>
-        Juan Perez
+      <li *ngFor="let person of task.associatedPeople">
+        {{person.name}}, ({{person.age}})
         <div>
-          Habilidades: Javascript, CSS
-        </div>
-      </li>
-      <li>
-        Maria Lopez
-        <div>
-          Habilidades: Javascript, CSS
+          Habilidades: {{person.skills}}
         </div>
       </li>
     </ul>

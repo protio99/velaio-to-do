@@ -1,15 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { Task } from 'src/app/models/task.model';
+import { Task } from 'src/app/domains/shared/models/task.model';
+import { Person } from 'src/app/domains/shared/models/person.model';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.css'],
 })
 export class TaskComponent {
-  @Input() title: string = '';
-  @Input() deadlineDate: string = '';
-  @Input() associatedPeople: [string] = [''];
 
-
+  @Input({ required: true }) task!: Task;
 }

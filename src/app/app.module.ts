@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './domains/tasks/pages/list/list.component';
 import { TaskComponent } from './domains/tasks/components/task/task.component';
+import { CommonModule } from '@angular/common';
+import { CreateTaskComponent } from './domains/tasks/components/create-task/create-task.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,10 @@ import { TaskComponent } from './domains/tasks/components/task/task.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule,
+    CreateTaskComponent
+
   ],
   providers: [],
   bootstrap: [AppComponent]
