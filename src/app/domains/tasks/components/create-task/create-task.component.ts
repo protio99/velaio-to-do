@@ -28,28 +28,56 @@ export class CreateTaskComponent {
   ) {}
 
 
-  createTaskForm = this.formBuilder.group({
-    taskName: ['',
-      [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.pattern(/^(?=.*[a-zA-Z])\s*(\S+(\s+\S+)*)?\s*$/)
-      ]
-    ],
-    deadlineDate: ['',
-      [
-        Validators.required,
-      ]
-    ],
-    people: this.formBuilder.group({
-      personName: ['',Validators.required],
-      age: ['',[
-        Validators.required,
-        Validators.min(18)
-      ]],
-      skills: this.formBuilder.array([this.formBuilder.control('')], [Validators.required])
-    })
+createTaskForm = this.formBuilder.group({
+  taskName: ['',
+    [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.pattern(/^(?=.*[a-zA-Z])\s*(\S+(\s+\S+)*)?\s*$/)
+    ]
+  ],
+  deadlineDate: ['',
+    [
+      Validators.required,
+    ]
+  ],
+  people: this.formBuilder.array([])
 })
+
+createPerson(): FormGroup {
+  return this.formBuilder.group({
+    personName: ['', Validators.required],
+    age: ['', [
+      Validators.required,
+      Validators.min(18)
+    ]],
+    skills: this.formBuilder.array([this.formBuilder.control('')], [Validators.required])
+  })
+}
+
+get people(): FormArray{
+  return this.createTaskForm.get('people') as FormArray;
+}
+
+addPerson() :void {
+  this.people.push(this.createPerson());
+}
+
+removePerson(index: number) {
+  this.people.removeAt(index);
+}
+
+getSkills(personIndex: number): FormArray {
+  return this.people.at(personIndex).get('skills') as FormArray;
+}
+
+addSkill(personIndex: number) {
+  this.getSkills(personIndex).push(this.formBuilder.control('', Validators.required));
+}
+
+removeSkill(personIndex: number, skillIndex: number) {
+  this.getSkills(personIndex).removeAt(skillIndex);
+}
 
 
   addTask(): void {
@@ -65,14 +93,6 @@ export class CreateTaskComponent {
     // // this.taskService.addTask(newTask);
     // console.log("nueva tarea", newTask);
 
-  }
-
-  get skills(){
-    return this.createTaskForm.get('people.skills') as FormArray;
-  }
-
-  addSkill() :void {
-    this.skills.push(this.formBuilder.control(''));
   }
 
 }
