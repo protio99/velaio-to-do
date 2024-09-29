@@ -34,6 +34,8 @@ export class ListComponent {
   showCreateTaskForm = false;
 
   toggleCreateTaskForm (event: Event) {
+    console.log("entre?");
+
       this.showCreateTaskForm = !this.showCreateTaskForm;
   }
 

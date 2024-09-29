@@ -14,7 +14,6 @@ import { FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } fr
   styleUrls: ['./create-task.component.css']
 })
 export class CreateTaskComponent {
-  // createTaskForm!: FormGroup;
 
   @Output() closeCreateTask = new EventEmitter();
 
