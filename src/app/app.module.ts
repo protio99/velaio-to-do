@@ -18,8 +18,7 @@ import { CreateTaskComponent } from './domains/tasks/components/create-task/crea
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    CreateTaskComponent
-
+    CreateTaskComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
