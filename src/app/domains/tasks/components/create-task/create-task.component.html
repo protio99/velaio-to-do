@@ -48,7 +48,7 @@
             <div class="add-person-form" *ngFor="let person of people.controls; let i = index" [formGroupName]="i">
               <h3>Person {{ i + 1 }}</h3>
               <div class="col-span-2">
-                <input type="text" formControlName="personName" name="floating_person_name" id="floating_person_name"
+                <input type="text" formControlName="name" name="floating_person_name" id="floating_person_name"
                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder="Person name" required />
               </div>

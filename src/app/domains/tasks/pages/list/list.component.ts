@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TaskComponent } from '../../components/task/task.component';
 import { Task } from 'src/app/domains/shared/models/task.model';
+import { TaskService } from 'src/app/domains/shared/services/task.service';
 
 @Component({
   selector: 'app-list',
@@ -9,27 +10,18 @@ import { Task } from 'src/app/domains/shared/models/task.model';
 })
 export class ListComponent {
 
-  task: Task[] = [{
-    id: 1,
-    title: 'Finish velaio test',
-    deadlineDate: '30/09/2024',
-    completed: false,
-    associatedPeople: [
-      {
-        id: 1,
-        name: 'Daniela Correa Muñoz',
-        age: 25,
-        skills: ['Angular', 'Js', 'Typescript']
-      },
-      {
-        id: 1,
-        name: 'Alejandro Jaramillo',
-        age: 25,
-        skills: ['Android', 'Js', 'Typescript']
-      }
-    ]
+  constructor(
+    private taskService: TaskService,
+  ){}
 
-  }]
+  task: Task[] = []
+
+  ngOnInit(): void {
+    this.taskService.getTasks().subscribe((tasks: Task[]) => {
+      this.task = tasks;
+      console.log("Tareas desde el componente", this.task);
+    });
+  }
 
   showCreateTaskForm = false;
 

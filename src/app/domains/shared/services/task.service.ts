@@ -14,24 +14,13 @@ export class TaskService {
 
   constructor() { }
 
-  // ngOnInit() {
-  //   const storage = localStorage.getItem('tasks');
-  //   if (storage) {
-  //     const tasks = JSON.parse(storage);
-  //     this.tasks = [...this.tasks, tasks];
-  //   } else {
-  //     localStorage.setItem('tasks', JSON.stringify(this.tasks));
-  //   }
-  // }
-
-
 
   getTasks(): Observable<Task[]> {
     const storage = localStorage.getItem('tasks');
     if (storage) {
-      const tasks = JSON.parse(storage);
-      this.tasks = [...this.tasks, tasks];
+      this.tasks = JSON.parse(storage);
     }
+    this.tasksSubject.next(this.tasks);
     return this.tasksSubject.asObservable();
   }
 

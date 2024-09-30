@@ -46,7 +46,7 @@ createTaskForm = this.formBuilder.group({
 
 createPerson(): FormGroup {
   return this.formBuilder.group({
-    personName: ['', Validators.required],
+    name: ['', Validators.required],
     age: ['', [
       Validators.required,
       Validators.min(18)
@@ -92,7 +92,6 @@ emptyPerson: Person[] = [{
       return;
     }
     const {taskName, deadlineDate, people} = this.createTaskForm.value
-    console.log(this.createTaskForm);
     const peopleArray: Person[] = people as Person[] || this.emptyPerson;
     const newTask: Task = {
       id: Date.now(),
@@ -102,8 +101,6 @@ emptyPerson: Person[] = [{
       completed: false
     };
     this.taskService.addTask(newTask);
-    console.log("nueva tarea", newTask);
-
   }
 
 }
