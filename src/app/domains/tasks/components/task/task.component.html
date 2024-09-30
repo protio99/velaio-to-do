@@ -1,13 +1,19 @@
-<div>
-  <h4>{{task.title}}</h4>
-  <p>{{task.deadlineDate}}</p>
-  <div>
-    <p>Associated people</p>
+<div class="task-container">
+  <div class="task-container_header">
+    <div class="flex gap-1">
+      <input class="toggle" type="checkbox"/>
+      <h4 class="font-bold">{{task.title}}</h4>
+    </div>
+    <p class="font-light">{{task.deadlineDate}}</p>
+  </div>
+  <div class="task-container_people">
+    <p class="font-bold m-1 ">Associated people</p>
     <ul>
-      <li *ngFor="let person of task.associatedPeople">
-        {{person.name}}, ({{person.age}})
-        <div>
-          Habilidades: {{person.skills}}
+      <li *ngFor="let person of task.associatedPeople; let i = index">
+        <p>{{i + 1}}. {{person.name}}, <span class="font-light">({{person.age}})</span></p>
+        <div class="flex gap-1">
+          <p class="font-bold">Habilidades: </p>
+          <p>{{person.skills}}</p>
         </div>
       </li>
     </ul>

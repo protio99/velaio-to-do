@@ -1,8 +1,8 @@
 <app-create-task *ngIf="showCreateTaskForm" (closeCreateTask)="toggleCreateTaskForm($event)" />
-<div>
+<div class="list">
   <header>
     <div>
-      <h3 class="text-3xl">Tasks APP</h3>
+      <h3 class="text-3xl font-bold dark:text-white">Tasks APP</h3>
       <p>An application to manage all your team tasks in one place</p>
     </div>
     <button type="button" (click)="toggleCreateTaskForm($event)"
@@ -16,10 +16,24 @@
       Create
     </button>
   </header>
+
   <section>
-    <div>Filters</div>
-    <div>
-      List of tasks
+    <div class="filters">
+      <h6 class="text-lg font-medium dark:text-white">Filters</h6>
+      <ul class="filters-options">
+        <li>
+          <a class="selected">All</a>
+        </li>
+        <li>
+          <a>Pending</a>
+        </li>
+        <li>
+          <a>Completed</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tasks">
+      <h6 class="text-lg font-bold dark:text-white">List of tasks</h6>
       <app-task *ngFor="let task of task" [task]="task" />
     </div>
   </section>

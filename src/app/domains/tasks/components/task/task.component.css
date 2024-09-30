@@ -1,0 +1,35 @@
+.task-container {
+  border-left: 1px solid #dedee6e3;
+  border-bottom: 1px solid #dedee6e3;
+  border-right: 1px solid #dedee6e3;
+
+  border-radius: 5px;
+
+  padding: 0 0 5px 0;
+
+}
+
+.task-container:hover {
+  background-color: #dedee683;
+}
+
+.task-container_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: #dedee6e3;
+  padding: 2px;
+}
+
+.task-container_people {
+  margin: 0 0 0 1rem;
+}
+
+.task-container_people li {
+  margin: 0 0 0 1.5rem;
+}
+
+.task-container_people li div {
+  margin: 0 0 0 1rem;
+}
