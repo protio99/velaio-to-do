@@ -19,19 +19,31 @@ export class TaskService {
   //   if (storage) {
   //     const tasks = JSON.parse(storage);
   //     this.tasks = [...this.tasks, tasks];
+  //   } else {
+  //     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   //   }
   // }
 
 
 
   getTasks(): Observable<Task[]> {
+    const storage = localStorage.getItem('tasks');
+    if (storage) {
+      const tasks = JSON.parse(storage);
+      this.tasks = [...this.tasks, tasks];
+    }
     return this.tasksSubject.asObservable();
   }
 
   addTask(newTask: Task): void {
+    const storage = localStorage.getItem('tasks');
+    let storedTasks: Task[] = [];
+    if (storage) {
+      storedTasks = JSON.parse(storage);
+    }
     this.tasks.push(newTask);
-    this.tasksSubject.next(this.tasks);
-    console.log("entre", this.tasks);
-
+    storedTasks.push(newTask);
+    localStorage.setItem('tasks', JSON.stringify(storedTasks));
+    this.tasksSubject.next(storedTasks);
   }
 }

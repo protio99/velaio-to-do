@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TaskService } from 'src/app/domains/shared/services/task.service';
 import { Task } from 'src/app/domains/shared/models/task.model';
 import { FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Person } from 'src/app/domains/shared/models/person.model';
 
 
 
@@ -78,19 +79,30 @@ removeSkill(personIndex: number, skillIndex: number) {
   this.getSkills(personIndex).removeAt(skillIndex);
 }
 
+emptyPerson: Person[] = [{
+  id: Date.now(),
+  name: '',
+  age: 0,
+  skills: ['']
+},]
+
 
   addTask(): void {
+    if (this.createTaskForm.invalid) {
+      return;
+    }
+    const {taskName, deadlineDate, people} = this.createTaskForm.value
     console.log(this.createTaskForm);
-
-    // const newTask: Task = {
-    //   id: Math.floor(Math.random() * 1000),
-    //   title: 'New Task',
-    //   deadlineDate: '2024-10-10',
-    //   associatedPeople: [],
-    //   completed: false
-    // };
-    // // this.taskService.addTask(newTask);
-    // console.log("nueva tarea", newTask);
+    const peopleArray: Person[] = people as Person[] || this.emptyPerson;
+    const newTask: Task = {
+      id: Date.now(),
+      title: taskName || '',
+      deadlineDate: deadlineDate || '',
+      associatedPeople: peopleArray,
+      completed: false
+    };
+    this.taskService.addTask(newTask);
+    console.log("nueva tarea", newTask);
 
   }
 
