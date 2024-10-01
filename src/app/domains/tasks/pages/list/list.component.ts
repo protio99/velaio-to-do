@@ -10,25 +10,44 @@ import { TaskService } from 'src/app/domains/shared/services/task.service';
 })
 export class ListComponent {
 
+  filter = 'all';
+
   constructor(
     private taskService: TaskService,
   ){}
 
   task: Task[] = []
+  filteredTasks: Task[] = [];
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe((tasks: Task[]) => {
       this.task = tasks;
-      console.log("Tareas desde el componente", this.task);
+      this.filteredTasks = tasks;
     });
   }
 
   showCreateTaskForm = false;
 
   toggleCreateTaskForm (event: Event) {
-    console.log("entre?");
-
       this.showCreateTaskForm = !this.showCreateTaskForm;
   }
+
+  updateFilter(value: 'all' | 'completed' | 'pending') {
+    this.filter = value;
+    this.filteredTasks = this.filterTasksByState();
+  }
+
+  filterTasksByState () {
+    const filter = this.filter;
+    const tasks = this.task;
+    if (filter === 'completed') {
+      return tasks.filter((task) => task.completed === true);
+    }
+    if (filter === 'pending') {
+      return tasks.filter((task) => task.completed === false);
+    }
+    return tasks;
+
+  };
 
 }

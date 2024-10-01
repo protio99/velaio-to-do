@@ -22,19 +22,19 @@
       <h6 class="text-lg font-medium dark:text-white">Filters</h6>
       <ul class="filters-options">
         <li>
-          <a class="selected">All</a>
+          <a (click)="updateFilter('all')" [class.selected]="filter === 'all'">All</a>
         </li>
         <li>
-          <a>Pending</a>
+          <a (click)="updateFilter('pending')" [class.selected]="filter === 'pending'">Pending</a>
         </li>
         <li>
-          <a>Completed</a>
+          <a (click)="updateFilter('completed')" [class.selected]="filter === 'completed'">Completed</a>
         </li>
       </ul>
     </div>
     <div class="tasks">
       <h6 class="text-lg font-bold dark:text-white">List of tasks</h6>
-      <app-task *ngFor="let task of task" [task]="task" />
+      <app-task *ngFor="let task of filteredTasks" [task]="task" />
     </div>
   </section>
 </div>
