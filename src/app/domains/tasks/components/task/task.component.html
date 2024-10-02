@@ -1,13 +1,13 @@
 <div class="task-container">
   <div class="task-container_header">
     <div class="flex gap-1">
-      <input class="toggle" type="checkbox"/>
-      <h4 class="font-bold">{{task.title}}</h4>
+      <input class="toggle" (change)="toogleHandler($event, taskIndex)"  [checked]="task.completed" type="checkbox"/>
+      <h4 class="font-bold" [class.task-completed]="task.completed">{{task.title}}</h4>
     </div>
     <p class="font-light">{{task.deadlineDate}}</p>
   </div>
   <div class="task-container_people">
-    <p class="font-bold m-1 ">Associated people</p>
+    <p class="font-bold m-1">Associated people</p>
     <ul>
       <li *ngFor="let person of task.associatedPeople; let i = index">
         <p>{{i + 1}}. {{person.name}}, <span class="font-light">({{person.age}})</span></p>

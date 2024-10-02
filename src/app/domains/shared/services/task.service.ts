@@ -35,4 +35,14 @@ export class TaskService {
     localStorage.setItem('tasks', JSON.stringify(storedTasks));
     this.tasksSubject.next(storedTasks);
   }
+
+  toggleStateCompleted(index: number, newState: boolean): void {
+    const storage = localStorage.getItem('tasks');
+    if (storage) {
+      this.tasks = JSON.parse(storage);
+    }
+    this.tasks[index].completed = newState;
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    this.tasksSubject.next(this.tasks);
+  }
 }

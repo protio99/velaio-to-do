@@ -47,7 +47,20 @@ export class ListComponent {
       return tasks.filter((task) => task.completed === false);
     }
     return tasks;
-
   };
+
+  toogleHandler(event: Event, index: number) {
+    console.log('evento', event);
+    const toggle = event.target as HTMLInputElement;
+    const isCompleted = toggle.checked;
+    this.taskService.toggleStateCompleted(index, isCompleted);
+    // this.task =  this.task.map((task, i) => {
+    //     if (index === i) {
+    //       task.completed = isCompleted;
+    //     }
+    //     return task;
+    //   })
+  }
+
 
 }

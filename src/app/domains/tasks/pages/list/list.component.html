@@ -34,7 +34,7 @@
     </div>
     <div class="tasks">
       <h6 class="text-lg font-bold dark:text-white">List of tasks</h6>
-      <app-task *ngFor="let task of filteredTasks" [task]="task" />
+      <app-task *ngFor="let task of filteredTasks let i = index" [task]="task" [taskIndex] = "i" />
     </div>
   </section>
 </div>
