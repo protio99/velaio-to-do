@@ -100,7 +100,9 @@ emptyPerson: Person[] = [{
       associatedPeople: peopleArray,
       completed: false
     };
+
     this.taskService.addTask(newTask);
+    this.closeCreateTaskHandler()
   }
 
 }
