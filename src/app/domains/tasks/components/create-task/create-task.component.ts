@@ -32,7 +32,7 @@ createTaskForm = this.formBuilder.group({
   taskName: ['',
     [
       Validators.required,
-      Validators.minLength(3),
+      Validators.minLength(5),
       Validators.pattern(/^(?=.*[a-zA-Z])\s*(\S+(\s+\S+)*)?\s*$/)
     ]
   ],
@@ -41,12 +41,12 @@ createTaskForm = this.formBuilder.group({
       Validators.required,
     ]
   ],
-  people: this.formBuilder.array([])
+  people: this.formBuilder.array([], [Validators.required])
 })
 
 createPerson(): FormGroup {
   return this.formBuilder.group({
-    name: ['', Validators.required],
+    name: ['', Validators.required, Validators.min(5)],
     age: ['', [
       Validators.required,
       Validators.min(18)
